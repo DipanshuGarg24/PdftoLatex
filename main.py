@@ -481,9 +481,9 @@ if uploaded_file is not None:
             st.warning("Please enter your Gemini API Key to proceed.")
         else:
             # Create a temporary directory to store all files
-            # with tempfile.TemporaryDirectory() as temp_dir:
-            if True:
-                temp_dir = "new"
+            with tempfile.TemporaryDirectory() as temp_dir:
+            # if True:
+                # temp_dir = "new"
                 # Save uploaded file to a temporary path
                 temp_pdf_path = os.path.join(temp_dir, uploaded_file.name)
                 with open(temp_pdf_path, "wb") as f:
@@ -562,4 +562,5 @@ if uploaded_file is not None:
                                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                                 use_container_width=True
                             )
+
 
