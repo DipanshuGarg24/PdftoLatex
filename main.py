@@ -86,6 +86,7 @@ def get_latex_from_pdf(pdf_file_path: str,api_key=None) -> str:
         # Clean up the response to ensure it's raw LaTeX code
         # The model sometimes wraps the code in ```latex ... ```
         latex_code = response.text
+        st.code(latex_code)
         print(latex_code)
         if latex_code.strip().startswith("```latex"):
             latex_code = latex_code.strip()[7:-3].strip()
@@ -293,5 +294,6 @@ if uploaded_file is not None:
                         st.error("Step 3/3: Failed to convert to DOCX.")
                 
                 
+
 
 
