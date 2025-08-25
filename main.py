@@ -50,7 +50,7 @@ def get_latex_from_pdf(pdf_file_path: str,api_key=None) -> str:
     genai.configure(api_key=api_key)
 
     # Prepare the generative model
-    model = genai.GenerativeModel('gemini-2.5-flash')
+    model = genai.GenerativeModel('gemini-2.5-pro')
 
     try:
         # Upload the PDF file to the Gemini API
@@ -185,7 +185,7 @@ if 'Temp_dir' not in st.session_state:
     st.session_state.Temp_dir = None
 
 # Get Gemini API Key from user
-api_key = st.text_input("🔑 Enter your Gemini API Key", type="password", help="Your key is not stored.")
+# api_key = st.text_input("🔑 Enter your Gemini API Key", type="password", help="Your key is not stored.")
 
 # File Uploader
 uploaded_file = st.file_uploader("📂 Upload your PDF file", type=["pdf"])
@@ -245,9 +245,10 @@ if uploaded_file is not None:
 
 
     elif st.button(f"✨ Process '{uploaded_file.name}'", use_container_width=True):
-        if not api_key:
-            st.warning("Please enter your Gemini API Key to proceed.")
-        else:
+        # if not api_key:
+        #     st.warning("Please enter your Gemini API Key to proceed.")
+        # else:
+        if True:
             # Create a temporary directory to store all files
         # 2. Create a new persistent temporary directory
             st.session_state.Temp_dir = tempfile.mkdtemp()
@@ -263,7 +264,7 @@ if uploaded_file is not None:
                 
                 # Step 1: Generate LaTeX
                 with st.spinner("Step 1/3: Generating LaTeX code with Gemini... 🤖"):
-                    latex_code = get_latex_from_pdf(temp_pdf_path, api_key)
+                    latex_code = get_latex_from_pdf(temp_pdf_path,st.secrets["api_key"])
                     if latex_code:
                         st.session_state.latex_code = latex_code
                         st.success("Step 1/3: LaTeX code generated successfully!")
@@ -292,4 +293,5 @@ if uploaded_file is not None:
                         st.error("Step 3/3: Failed to convert to DOCX.")
                 
                 
+
 
