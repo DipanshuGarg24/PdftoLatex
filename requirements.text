@@ -1,0 +1,11 @@
+# Gemini API for Python
+google-generativeai
+
+# For loading environment variables (like API keys) from a .env file
+python-dotenv
+
+# For converting PDF files to DOCX format
+pdf2docx
+
+# USE CASE 
+#pip install -r requirements.txt
