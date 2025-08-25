@@ -18,7 +18,7 @@ st.set_page_config(
 
 st.title("📄 PDF Processor Pro")
 st.markdown("Upload a PDF to convert it into high-quality LaTeX, a recompiled PDF, and an editable DOCX file.")
-
+st.markdown("Built by Dipanshu Garg")
 # --- Helper Functions (Backend Logic) ---
 
 def get_latex_from_pdf(pdf_file_path: str,api_key=None) -> str:
@@ -292,3 +292,4 @@ if uploaded_file is not None:
                         st.error("Step 3/3: Failed to convert to DOCX.")
                 
                 
+
