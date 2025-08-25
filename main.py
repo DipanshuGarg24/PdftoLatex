@@ -21,7 +21,7 @@ st.markdown("Upload a PDF to convert it into high-quality LaTeX, a recompiled PD
 
 # --- Helper Functions (Backend Logic) ---
 
-def get_latex_from_pdf(pdf_file_path: str,api=None) -> str:
+def get_latex_from_pdf(pdf_file_path: str,api_key=None) -> str:
     """
     Analyzes a PDF file using the Gemini Pro Vision model and returns its
     exact LaTeX code replica.
@@ -43,7 +43,7 @@ def get_latex_from_pdf(pdf_file_path: str,api=None) -> str:
     #     return f.read()
    
     # api_key = os.getenv("GEMINI_API_KEY")
-    api_key = "AIzaSyDLciV9zoGSvpr2k7_B3xuXa9CotqqmZCE"
+    
     if not api_key:
         return "Error: GEMINI_API_KEY not found. Please check your .env file."
 
@@ -199,6 +199,7 @@ if uploaded_file is not None:
         if st.button("Reset :)",type="primary"):
             # // reset thing
             st.session_state.down = False
+            st.session_state.latex_code = None
             if st.session_state.Temp_dir and os.path.exists(st.session_state.Temp_dir):
                 shutil.rmtree(st.session_state.Temp_dir)
             st.rerun()
@@ -276,7 +277,6 @@ if uploaded_file is not None:
                         if recompiled_pdf_path and os.path.exists(recompiled_pdf_path):
                             st.session_state.recompiled_pdf_path = recompiled_pdf_path
                             st.success("Step 2/3: PDF compiled successfully!")
-                            st.session_state.latex_code = None
                         else:
                             st.error("Step 2/3: Failed to compile PDF.")
                 
