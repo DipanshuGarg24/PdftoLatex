@@ -276,6 +276,7 @@ if uploaded_file is not None:
                         if recompiled_pdf_path and os.path.exists(recompiled_pdf_path):
                             st.session_state.recompiled_pdf_path = recompiled_pdf_path
                             st.success("Step 2/3: PDF compiled successfully!")
+                            st.session_state.latex_code = None
                         else:
                             st.error("Step 2/3: Failed to compile PDF.")
                 
@@ -291,3 +292,4 @@ if uploaded_file is not None:
                         st.error("Step 3/3: Failed to convert to DOCX.")
                 
                 
+
